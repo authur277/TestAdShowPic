@@ -5,26 +5,22 @@ package com.example.testadshowpic;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
-import android.view.Gravity;
-import android.view.LayoutInflater;
+import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.view.Window;
-import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.Gallery;
-import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.PopupWindow;
-import android.widget.Toast;
-import android.widget.AdapterView.OnItemClickListener;
+
+import com.example.network.ConfigNetwork;
 
 
 public class MainActivity extends Activity  {
+	
+	private static final String PIC_TAG = "PIC_TAG";
 	
 	private ImageAdapter imgAdapter;			// 声明图片资源对象
 	private Gallery gallery;
@@ -34,6 +30,9 @@ public class MainActivity extends Activity  {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_main);
+		
+		ConfigNetwork.requestConfigUntilDone();
+		Log.d(PIC_TAG, ConfigNetwork.config.toString());
 		
 		Button button_ShowAd = (Button) findViewById(R.id.button_ShowAd);
 		Button button_ShowPopupWindow = (Button) findViewById(R.id.button_ShowPopupWindow);
